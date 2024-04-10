@@ -1,0 +1,5 @@
+site_name: Kubernetes Cost Optimization
+theme: dracula
+nav:
+ - Home: index.md
+ - The Golden Signals of Kubernetes Cost Optimization: golden-signals.md
