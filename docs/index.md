@@ -1,37 +1,18 @@
+title: The Kubernetes Cost Optimization Guide
+
 # Kubernetes Cost Optimization
 
- - Introduction (first page)
+### Welcome to the Kubernetes Cost Optimization Guide
 
-- The Golden Signals of Kubernetes Cost Optimization - https://services.google.com/fh/files/misc/state_of_kubernetes_cost_optimization.pdf
-- Balancing Cost with Performance and Reliability
-    - Understanding the Pod QoS Model https://services.google.com/fh/files/misc/state_of_kubernetes_cost_optimization.pdf
-    - PodDisruptionBudget and application disruption
-- The Basics of Kubernetes Resource Allocation
-    - Requests
-        - Memory
-        - CPU
-    - Limits
-        - Memory
-        - CPU
-            - Understanding CPU throttling
-    - Defining resource guardrails
-      - LimitRange
-      - NamespaceQuota
-- Pod Autoscaling
-    - Horizontal
-      - HPA
-        - CPU
-        - Memory
-        - Custom metrics
-      - KEDA
-- Vertical
-    - VPA
-    - Goldilocks
-- Cluster Autoscaling
-    - Cluster-autoscaler
-    - Karpenter
-    - Improving Kubernetes Bin Packing
-- Leveraging Cloud Discounts
-    - Spot VMs and Best Effort Pods
-     - Combining Spot and On-Demand Fleets
-     - Applying Saving Plans to your Kubernetes clusters
+This website provides the learning materials for engineers wishing to optimize their K8s cluster costs without compromizing performance and reliability.
+
+If you find issues with any of the website materials  - please send us a note.
+
+Browse our guides:
+
+- [The Golden Signals of Kubernetes Cost ](./golden-signals)
+- [Balancing Cost with Performance and Reliability](./cost-perf-r9y)
+- [Kubernetes Workload Rightsizing](./rightsizing)
+- [Pod Autoscaling](./pod-autoscaling)
+- [Cluster Autoscaling](cluster-autoscaling)
+- [Leveraging Cloud Discounts](./cloud-discounts)

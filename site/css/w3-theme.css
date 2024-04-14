@@ -1,0 +1,115 @@
+/* inspired by https://www.w3schools.com/w3css/w3css_color_generator.asp and https://www.w3schools.com/colors/colors_schemes.asp */
+
+/* light theme */
+.w3-theme-l5 {color:#000 !important; background-color:#fafcfe !important}
+.w3-theme-l4 {color:#000 !important; background-color:#eef6fc !important}
+.w3-theme-l3 {color:#000 !important; background-color:#e2f0fa !important}
+.w3-theme-l2 {color:#000 !important; background-color:#d6eaf8 !important}
+.w3-theme-l1 {color:#000 !important; background-color:#cae4f5 !important}
+.w3-theme-d1 {color:#000 !important; background-color:#8ac4ea !important}
+.w3-theme-d2 {color:#000 !important; background-color:#67b2e4 !important}
+.w3-theme-d3 {color:#000 !important; background-color:#43a0de !important}
+.w3-theme-d4 {color:#000 !important; background-color:#248dd4 !important}
+.w3-theme-d5 {color:#000 !important; background-color:#1e75b0 !important}
+
+.w3-theme-light {color:#000 !important; background-color:#fafcfe !important}
+.w3-theme-dark {color:#000 !important; background-color:#1e75b0 !important}
+.w3-theme-action {color:#000 !important; background-color:#1e75b0 !important}
+
+.w3-theme {color:#000 !important; background-color:#aaebc5 !important}
+.w3-text-theme {color:#aaebc5 !important}
+.w3-border-theme {border-color:#aaebc5 !important}
+
+.w3-hover-theme:hover {color:#000 !important; background-color:#aaebc5 !important}
+.w3-hover-text-theme:hover {color:#aaebc5 !important}
+.w3-hover-border-theme:hover {border-color:#aaebc5 !important}
+
+.w3-code {
+  border-left:4px solid #aaebc5;
+}
+.w3-code {
+  color:#000;
+  background-color:#eef6fc;
+}
+.w3-codespan {
+  color:#000;
+  background-color:#e2f0fa;
+}
+
+a{color: inherit !important;}
+
+.w3-striped tbody tr:nth-child(even){
+    background-color:#eef6fc
+}
+
+.w3-bordered tr{
+    border-bottom:1px solid #000
+}
+
+.w3-table tbody tr:hover,table li:hover{
+  background-color:#e2f0fa
+}
+
+.search-results article:hover {
+  background-color:#e2f0fa
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  /* dark theme */
+  .w3-theme-l5 {color:#fff !important; background-color:#030b11 !important}
+  .w3-theme-l4 {color:#fff !important; background-color:#0c2f46 !important}
+  .w3-theme-l3 {color:#fff !important; background-color:#15527b !important}
+  .w3-theme-l2 {color:#fff !important; background-color:#1e75b0 !important}
+  .w3-theme-l1 {color:#fff !important; background-color:#3297db !important}
+  .w3-theme-d1 {color:#000 !important; background-color:#b6daf2 !important}
+  .w3-theme-d2 {color:#000 !important; background-color:#bedef3 !important}
+  .w3-theme-d3 {color:#000 !important; background-color:#c6e2f5 !important}
+  .w3-theme-d4 {color:#000 !important; background-color:#cee6f6 !important}
+  .w3-theme-d5 {color:#000 !important; background-color:#d6eaf8 !important}
+
+  .w3-theme-light {color:#fff !important; background-color:#030b11 !important}
+  .w3-theme-dark {color:#000 !important; background-color:#d6eaf8 !important}
+  .w3-theme-action {color:#000 !important; background-color:#d6eaf8 !important}
+
+  .w3-theme {color:#000 !important; background-color:#aaebc5 !important}
+  .w3-text-theme {color:#aaebc5 !important}
+  .w3-border-theme {border-color:#aaebc5 !important}
+
+  .w3-hover-theme:hover {color:#000 !important; background-color:#aaebc5 !important}
+  .w3-hover-text-theme:hover {color:#aaebc5 !important}
+  .w3-hover-border-theme:hover {border-color:#aaebc5 !important}
+
+  .w3-code {
+    border-left:4px solid #aaebc5;
+  }
+  .w3-code {
+    color:#fff;
+    background-color:#0c2f46;
+  }
+  .w3-codespan {
+    color:#fff;
+    background-color:#15527b;
+  }
+
+  a{color: inherit !important;}
+
+  .w3-striped tbody tr:nth-child(even){
+      background-color:#0c2f46
+  }
+
+  .w3-bordered tr{
+      border-bottom:1px solid #fff
+  }
+
+  .w3-table tbody tr:hover,table li:hover{
+    background-color:#15527b
+  }
+
+  .search-results article:hover {
+    background-color:#15527b
+  }
+
+
+}

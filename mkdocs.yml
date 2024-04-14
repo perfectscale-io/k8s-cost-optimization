@@ -1,5 +1,32 @@
 site_name: Kubernetes Cost Optimization
-theme: dracula
+theme: 
+  name: risonia
+  custom_dir: custom_dir/
+  favicon: https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png
+  logo: https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png
 nav:
  - Home: index.md
  - The Golden Signals of Kubernetes Cost Optimization: golden-signals.md
+ - Balancing Cost with Performance and Reliability: cost-perf-r9y.md
+ - Kubernetes Workload Rightsizing: rightsizing.md
+ - Pod Autoscaling: pod-autoscaling.md
+ - Cluster Autoscaling: cluster-autoscaling.md
+ - Leveraging Cloud Discounts : cloud-discounts.md
+
+
+plugins:
+    - search: {}
+    - color-theme: # optional
+        theme_color: '#ABEBC6' # primary color
+        secondary_color: '#AED6F1' # can be a color or scheme
+        light_text_color: '#000' # black
+        dark_text_color: '#fff' # white
+      #  extra_css_light: # list of extra CSS for light mode
+        #     - 'css/additional-light.css'
+        # extra_css_dark:  # list of extra CSS for dark mode
+        #     - 'css/additional-dark.css'
+        # additional: # build these themes also
+        #   - theme_color: '#44bb4f'
+        #     secondary_color: 'complementary'
+
+    - w3css-classes: {} # mandatory
