@@ -10,7 +10,8 @@ If you find issues with any of the website materials  - please send us a note.
 
 Browse our guides:
 
-- [The Golden Signals of Kubernetes Cost ](./golden-signals)
+- [The Golden Signals of Kubernetes Cost Optimization](./golden-signals)
+- [The 4 Areas of Kubernetes Cost Optimization](./over-under-idle-waste)
 - [Balancing Cost with Performance and Reliability](./cost-perf-r9y)
 - [Kubernetes Workload Rightsizing](./rightsizing)
 - [Pod Autoscaling](./pod-autoscaling)
