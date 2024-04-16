@@ -2,7 +2,7 @@ title: The Kubernetes Cost Optimization Guide
 
 # The 4 Focus Areas
 
-When starting out with Kubernetes Cost Optimization it's important to understand what to focus on. Redundant costs come from 2 main sources: *wasted resources* and *idle resources*. Both of these are usually caused by over-provisioning, intentional or unintentional. On the other hand - thoughtless cost reduction activity can lead to *under-provisioning*, which causes performance and reliability issues. 
+When starting out with Kubernetes Cost Optimization it's important to understand what to focus on. Redundant costs come from 2 main sources: ==wasted resources== and ==idle resources==. Both of these are usually caused by ==over-provisioning==, intentional or unintentional. On the other hand - thoughtless cost reduction activity can lead to ==under-provisioning==, which causes performance and reliability issues. 
 
 When optimizing our cluster costs we want to focus on all of these areas iteratively - in order to keep our clusters as cost-effective and performant as needed.
 
