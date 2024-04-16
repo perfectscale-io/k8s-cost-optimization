@@ -12,7 +12,7 @@ Now let's explain each of these focus areas in more detail.
 
 Pinpointing the exact memory and CPU requests for our pods is hard - it requires observing the application behaviour under production load over a significant time period. 
 Therefore most engineers prefer to err towards overprovisioning  - i.e setting requests much higher than the application will ever use.
-This delta between what an app actually uses and the muber set in the pod container requests is **wasted resources**.
+This delta between what an app actually uses and the number set in the pod container requests is **wasted resources**.
 This leads to a large amount of allocated but unutilized resources all across the cluster. Just imagine your cluster runs 200 pods and each of them requests 100Mb more memory than it actually uses. Altogether you'll have 20Gb of wasted RAM across the cluster. These resources will be provisioned, paid for, but never actually used.
 
 ## Idle Resources
