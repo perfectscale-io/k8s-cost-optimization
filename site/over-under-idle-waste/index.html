@@ -7,14 +7,14 @@
   
   
   <link rel="shortcut icon" href="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png">
-  <title>Kubernetes Cost Optimization</title>
-  <link rel="stylesheet" href="/css/w3.css">
-  <link rel="stylesheet" href="/css/w3-theme.css" id="theme-auto">
-  <link rel="stylesheet" href="/css/w3-theme-light.css" media="none" id="theme-light">
-  <link rel="stylesheet" href="/css/w3-theme-dark.css" media="none" id="theme-dark">
-  <link rel="stylesheet" href="/css/theme.css">
+  <title>The 4 Focus Areas of Kubernetes Cost Optimization - Kubernetes Cost Optimization</title>
+  <link rel="stylesheet" href="../css/w3.css">
+  <link rel="stylesheet" href="../css/w3-theme.css" id="theme-auto">
+  <link rel="stylesheet" href="../css/w3-theme-light.css" media="none" id="theme-light">
+  <link rel="stylesheet" href="../css/w3-theme-dark.css" media="none" id="theme-dark">
+  <link rel="stylesheet" href="../css/theme.css">
   <script>
-  var base_url = "/";
+  var base_url = "..";
   var themeItem = 'risonia_theme_'+encodeURIComponent('None');
 
   function checkTheme() {
@@ -80,7 +80,7 @@
     <span style="height:2em;display:inline-block;padding:16px 0px;">&nbsp;</span>
   </div>
   <div class="w3-cell w3-cell-middle">
-    <span class="w3-left" id="title-top"></span>
+    <span class="w3-left" id="title-top">The Kubernetes Cost Optimization Guide</span>
   </div>
   <div class="w3-cell w3-cell-middle" style="width:0;">
     <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-left w3-hide no-print" onclick="topFunction()" id="myToTop"><svg class="svg-1em"><use xlink:href="#to-top" /></svg></button>
@@ -88,6 +88,7 @@
   <div class="w3-cell w3-cell-middle">
     <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-right no-print" onclick="toggleTheme(themeItem)" id="myThemeToggle"><svg class="svg-1em"><use xlink:href="#theme-toggle" /></svg></button>
     <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-right no-print" onclick="openSearch()"><svg class="svg-1em"><use xlink:href="#search" /></svg></button>
+    <a class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-right no-print" href="None" target="_blank">&lt;/&gt;</a>
     </div>
 </div>
 
@@ -99,33 +100,33 @@
     <span style="height:2em;display:inline-block;padding:16px 0px;">&nbsp;</span>
   </div>
   <div class="w3-cell w3-cell-middle">
-    <span class="w3-left" id="title-head"></span>
+    <span class="w3-left" id="title-head">The Kubernetes Cost Optimization Guide</span>
   </div>
 </header>
 <nav class="w3-sidebar w3-bar-block w3-collapse-custom w3-animate-left w3-theme-l4" style="z-index:3;width:300px;" id="mySidebar">
   <div id="myNav" style="font-weight: bold;">
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/.">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="..">
       Home
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/golden-signals/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../golden-signals/">
       The Golden Signals of Kubernetes Cost Optimization
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/over-under-idle-waste/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./">
       The 4 Focus Areas of Kubernetes Cost Optimization
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/cost-perf-r9y/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cost-perf-r9y/">
       Balancing Cost with Performance and Reliability
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/rightsizing/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../rightsizing/">
       Kubernetes Workload Rightsizing
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/pod-autoscaling/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../pod-autoscaling/">
       Pod Autoscaling
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/cluster-autoscaling/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cluster-autoscaling/">
       Cluster Autoscaling
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="/cloud-discounts/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cloud-discounts/">
       Leveraging Cloud Discounts
     </a>
   </div>
@@ -133,18 +134,41 @@
 </nav>
 
 <div class="w3-overlay w3-hide-huge w3-animate-opacity" onclick="w3_close()" style="cursor:pointer;" id="myOverlay"></div>
+    
+    
+    
+    
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-right w3-theme-l4" style="z-index:3;width:300px;right:0;" id="myTocbar">
+  <div id="myToc">
+  <a href="#the-4-focus-areas" class="w3-bar-item w3-button w3-hover-theme w3-theme-l4">The 4 Focus Areas</a>
+    <a href="#wasted-resources" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Wasted Resources</a>
+    <a href="#idle-resouurces" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Idle Resouurces</a>
+    <a href="#over-provisioning" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Over Provisioning</a>
+    <a href="#under-provisionins" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Under Provisionins</a>
+  </div>
+  <div class="w3-container w3-large" style="height: 8em;" >&nbsp;</div>
+</nav>
 
-<div id="main-view" class="w3-main-custom" style="margin-left:300px;">
+<div id="main-view" class="w3-main-custom" style="margin-left:300px; margin-right:300px;">
 
 <div class="w3-container" style="padding: 32px;">
   <div class="w3-right w3-margin-bottom no-print">
+    <div class="w3-dropdown-hover w3-hide-large" id="myTocButton" style="z-index:1;">
+      <button class="w3-button w3-hover-theme w3-theme-l3 w3-hover-theme"><svg class="svg-1em"><use xlink:href="#toc" /></svg></button>
+      <div class="w3-dropdown-content w3-bar-block" style="right:0;">
+        <a href="#the-4-focus-areas" class="w3-bar-item w3-button w3-hover-theme w3-theme-l3">The 4 Focus Areas</a>
+        <a href="#wasted-resources" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Wasted Resources</a>
+        <a href="#idle-resouurces" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Idle Resouurces</a>
+        <a href="#over-provisioning" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Over Provisioning</a>
+        <a href="#under-provisionins" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Under Provisionins</a>
+      </div>
+    </div>
   </div>
-
-<div class="w3-panel w3-theme">
-  <p>404</p>
-</div>  
-
-
+<h1 id="the-4-focus-areas">The 4 Focus Areas</h1>
+<h2 id="wasted-resources">Wasted Resources</h2>
+<h2 id="idle-resouurces">Idle Resouurces</h2>
+<h2 id="over-provisioning">Over Provisioning</h2>
+<h2 id="under-provisionins">Under Provisionins</h2>
 <div id="mkdocs_search_modal" class="w3-modal">
   <div class="w3-modal-content">
     <div class="w3-theme-l4">
@@ -162,15 +186,37 @@
   </div>
 </div>
 </div>
-<footer class="w3-container w3-theme no-print">
-  <p class="w3-left w3-tiny">
-    <a href="https://www.mkdocs.org" target="_blank">MkDocs</a>
-    <span class="w3-hide-small"> / <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></span>
-    / <a href="https://github.com/unverbuggt/mkdocs-risonia-theme" target="_blank">Risonia theme</a>
+  <p class="w3-right w3-tiny">
+    <a href="https://perfectscale.io">Brought to you by PerfectScale </a> <img src="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png">
   </p>
-</footer>
 </div>
-<script src="/js/theme.js"></script>  
-    <script src="/search/main.js"></script>
+<script src="../js/theme.js"></script>  
+    <script src="../search/main.js"></script>
+<script>
+  var DOMContentLoaded_fired = false;
+</script>
+<script id="theme">
+function runWhenDOMContentLoaded() {
+  document.querySelectorAll('pre code').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+  document.querySelectorAll('table').forEach(function(table) {
+    if (!table.hasAttribute('Tablesort')) {
+      new Tablesort(table);
+      table.setAttribute('Tablesort', '');
+    }
+  });
+}
+if (DOMContentLoaded_fired) {
+  runWhenDOMContentLoaded();
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  DOMContentLoaded_fired=true;
+  runWhenDOMContentLoaded();
+});
+</script>
+
 </body>
 </html>
