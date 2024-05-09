@@ -111,6 +111,9 @@
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../golden-signals/">
       The Golden Signals of Kubernetes Cost Optimization
     </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../resources/">
+      The Economics of Kubernetes Resource Allocation
+    </a>
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./">
       The 4 Focus Areas of Kubernetes Cost Optimization
     </a>
@@ -173,6 +176,7 @@
 In most unoptimizaed clusters we're observing up to 50% of waste, which translates to thousands of dollars or euros monthly.</p>
 <p>This waste comes from over-provisioning the containers in our pods.
 Read on to understand the reasons and perils of over-provsioning.</p>
+<p><img alt="idle-wated" class="w3-image" src="../assets/idle.png"/></p>
 <h2 id="idle-resources">Idle Resources</h2>
 <p>Kubernetes comes with a promise of automatic bin packing. I.e - it is supposed to fit the largest possible amount of pods on every node in the cluster. But this is again dependent on engineers correctly defining 1) resource requests and 2) node sizes. Even with smart and well-tuned autoscaling tools like Karpenter this doesn't always work and we find ourselves with nodes that are more than half empty - with resources that were neither requested nor utilized. All these are <strong>idle resources</strong> and taking care of reducing them is an important focus area of Kubernetes Cost Optimization.</p>
 <h2 id="overprovisioning">Overprovisioning</h2>
