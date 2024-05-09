@@ -17,6 +17,7 @@ In most unoptimizaed clusters we're observing up to 50% of waste, which translat
 This waste comes from over-provisioning the containers in our pods.
 Read on to understand the reasons and perils of over-provsioning.
 
+![idle-wated](./assets/idle.png)
 
 ## Idle Resources
 

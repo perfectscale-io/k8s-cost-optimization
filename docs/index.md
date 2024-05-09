@@ -11,6 +11,7 @@ If you find issues with any of the website materials  - please send us a note.
 Browse our guides:
 
 - [The Golden Signals of Kubernetes Cost Optimization](./golden-signals)
+- [The Economics of Kubernetes Resource Allocation](./resources)
 - [The 4 Areas of Kubernetes Cost Optimization](./over-under-idle-waste)
 - [Balancing Cost with Performance and Reliability](./cost-perf-r9y)
 - [Kubernetes Workload Rightsizing](./rightsizing)
