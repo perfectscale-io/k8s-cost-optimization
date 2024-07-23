@@ -80,7 +80,7 @@
     <span style="height:2em;display:inline-block;padding:16px 0px;">&nbsp;</span>
   </div>
   <div class="w3-cell w3-cell-middle">
-    <span class="w3-left" id="title-top">Horizontal Pod Autoscaling (HPA)</span>
+    <span class="w3-left" id="title-top">The Kubernetes Cost Optimization Guide</span>
   </div>
   <div class="w3-cell w3-cell-middle" style="width:0;">
     <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-left w3-hide no-print" onclick="topFunction()" id="myToTop"><svg class="svg-1em"><use xlink:href="#to-top" /></svg></button>
@@ -100,7 +100,7 @@
     <span style="height:2em;display:inline-block;padding:16px 0px;">&nbsp;</span>
   </div>
   <div class="w3-cell w3-cell-middle">
-    <span class="w3-left" id="title-head">Horizontal Pod Autoscaling (HPA)</span>
+    <span class="w3-left" id="title-head">The Kubernetes Cost Optimization Guide</span>
   </div>
 </header>
 <nav class="w3-sidebar w3-bar-block w3-collapse-custom w3-animate-left w3-theme-l4" style="z-index:3;width:300px;" id="mySidebar">
@@ -180,10 +180,10 @@
   </div>
 <h1 id="hpa-the-horizontal-pod-autoscaler">HPA - The Horizontal Pod Autoscaler</h1>
 <p>Horizontal Pod Autoscaler (HPA) in Kubernetes is a controller that automatically adjusts the number of pods based on observed CPU or memory utilization (default mode) or other metrics. The goal of HPA is to ensure that applications can handle varying loads efficiently by scaling out (increasing the number of pods) during high demand and scaling in (decreasing the number of pods) during low demand. This dynamic scaling helps maintain resource utilization and application performance. HPA continuously monitors the specified metrics and adjusts the replica count to match the desired state, ensuring that the application remains responsive. </p>
-<p><img alt="hpa" class="w3-image" src="../assets/hpa.png"/></p>
+<p><img alt="hpa" class="w3-image" src="../assets/hpa1.jpg"/></p>
 <h2 id="how-hpa-works">How HPA works</h2>
 <p>HPA works as a control loop that runs at regular intervals. During each interval, the HPA controller queries the resource utilization metrics specified in the HPA configuration. The controller identifies the target resource defined by the <code class="w3-codespan">scaleTargetRef</code> field in the HPA configuration. It then selects the pods based on the target resource's selector labels and fetches the relevant metrics. For CPU and memory metrics, the controller uses the resource metrics API. For custom metrics, it uses the custom metrics API. If you want to create your own custom metrics adapter, take a look at the starter [template] (https://github.com/kubernetes-sigs/custom-metrics-apiserver)</p>
-<p><img alt="hpa-works" class="w3-image" src="../assets/hpa-works.png"/></p>
+<p><img alt="hpa-works" class="w3-image" src="../assets/hpa2.jpg"/></p>
 <p>For metrics of individual pod resources, such as CPU usage, the HPA controller collects data for each pod that it targets. When a target utilization value is specified, the controller calculates the CPU utilization as a percentage of the resource request defined for each container within the pod. If any containers within a pod lack the necessary resource request settings, the CPU utilization for that pod will not be defined, and the autoscaler will not take any action based on the metric.</p>
 <p>HPA generally retrieves metrics from aggregated APIs like <code class="w3-codespan">metrics.k8s.io</code>, <code class="w3-codespan">custom.metrics.k8s.io</code>, or <code class="w3-codespan">external.metrics.k8s.io</code>. The <code class="w3-codespan">metrics.k8s.io</code> API is generally provided by an add-on called Metrics Server, which must be deployed separately.</p>
 <p>The Horizontal Pod Autoscaler (HPA) uses a straightforward algorithm to adjust the number of pod replicas based on the ratio of current metric values  to desired metric values. The core formula is:</p>
