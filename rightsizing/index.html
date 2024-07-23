@@ -123,9 +123,23 @@
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./">
       Kubernetes Workload Rightsizing
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../pod-autoscaling/">
-      Pod Autoscaling
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" onclick="myAccordion('acc1')" href="javascript:void(0)">
+      Pod Autoscaling<svg class="svg-1em"><use xlink:href="#drop-down" /></svg>
     </a>
+    <div id="acc1" class="w3-animate-left w3-hide">
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../pod-autoscaling/" style="padding-left: 24px;">
+        Overview
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../hpa/" style="padding-left: 24px;">
+        Horizontal Pod Autoscaling (HPA)
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../keda.md" style="padding-left: 24px;">
+        Event Driven Autoscaling (KEDA)
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../vpa.md" style="padding-left: 24px;">
+        Vertical Pod Autoscaling (VPA)
+      </a>
+    </div>
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cluster-autoscaling/">
       Cluster Autoscaling
     </a>
