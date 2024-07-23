@@ -7,7 +7,7 @@
   
   
   <link rel="shortcut icon" href="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png">
-  <title>Leveraging Cloud Discounts - Kubernetes Cost Optimization</title>
+  <title>The Economics of Kubernetes Resource Allocation - Kubernetes Cost Optimization</title>
   <link rel="stylesheet" href="../css/w3.css">
   <link rel="stylesheet" href="../css/w3-theme.css" id="theme-auto">
   <link rel="stylesheet" href="../css/w3-theme-light.css" media="none" id="theme-light">
@@ -111,7 +111,7 @@
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../golden-signals/">
       The Golden Signals of Kubernetes Cost Optimization
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../resources/">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./">
       The Economics of Kubernetes Resource Allocation
     </a>
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../over-under-idle-waste/">
@@ -129,7 +129,7 @@
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cluster-autoscaling/">
       Cluster Autoscaling
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cloud-discounts/">
       Leveraging Cloud Discounts
     </a>
   </div>
@@ -137,18 +137,70 @@
 </nav>
 
 <div class="w3-overlay w3-hide-huge w3-animate-opacity" onclick="w3_close()" style="cursor:pointer;" id="myOverlay"></div>
+    
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-right w3-theme-l4" style="z-index:3;width:300px;right:0;" id="myTocbar">
+  <div id="myToc">
+  <a href="#the-economics-of-kubernetes-resource-allocation" class="w3-bar-item w3-button w3-hover-theme w3-theme-l4">The Economics of Kubernetes Resource Allocation</a>
+    <a href="#resource-allocation-in-kubernetes" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Resource Allocation in Kubernetes</a>
+      <a href="#cpu-and-memory-allocation" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4" style="padding-left: 24px;">CPU and memory allocation</a>
+      <a href="#storage-resource-allocation" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4" style="padding-left: 24px;">Storage Resource Allocation</a>
+      <a href="#network-resource-allocation" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4" style="padding-left: 24px;">Network Resource Allocation</a>
+  </div>
+  <div class="w3-container w3-large" style="height: 8em;" >&nbsp;</div>
+</nav>
 
-<div id="main-view" class="w3-main-custom" style="margin-left:300px;">
+<div id="main-view" class="w3-main-custom" style="margin-left:300px; margin-right:300px;">
 
 <div class="w3-container" style="padding: 32px;">
   <div class="w3-right w3-margin-bottom no-print">
+    <div class="w3-dropdown-hover w3-hide-large" id="myTocButton" style="z-index:1;">
+      <button class="w3-button w3-hover-theme w3-theme-l3 w3-hover-theme"><svg class="svg-1em"><use xlink:href="#toc" /></svg></button>
+      <div class="w3-dropdown-content w3-bar-block" style="right:0;">
+        <a href="#the-economics-of-kubernetes-resource-allocation" class="w3-bar-item w3-button w3-hover-theme w3-theme-l3">The Economics of Kubernetes Resource Allocation</a>
+        <a href="#resource-allocation-in-kubernetes" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Resource Allocation in Kubernetes</a>
+          <a href="#cpu-and-memory-allocation" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3" style="padding-left: 24px;">CPU and memory allocation</a>
+          <a href="#storage-resource-allocation" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3" style="padding-left: 24px;">Storage Resource Allocation</a>
+          <a href="#network-resource-allocation" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3" style="padding-left: 24px;">Network Resource Allocation</a>
+      </div>
+    </div>
   </div>
-<h1 id="leveraging-cloud-discounts">Leveraging Cloud Discounts</h1>
+<h1 id="the-economics-of-kubernetes-resource-allocation">The Economics of Kubernetes Resource Allocation</h1>
+<p>This whole guide talks a lot about <em>resources</em> which is a highly overloaded word in Kubernetes world. All the objects defined in Kubernetes API (such as Pod, Service, ConfigMap, etc) are also called <em>resources</em>. But we're not referring to them here.</p>
+<p>So in order to make things clearer let's define resources for the purpose of this guide.</p>
+<p>When we say <em>resources</em> - we actually mean CPU, GPU, memory, network and storage. </p>
+<p>In the pre-cloud world all these needed to be defined in advance. Ordering and provisioning these resources took weeks or even months.</p>
+<p>In cloud native environments (i.e Kubernetes) these resources are highly dynamic in nature and can be allocated and released on demand - just by issuing an API call. The process of allocating additional resources in such an automated manner is called autoscaling.
+This automation gives us a lot of power by prividing access to addtional resources when needed (aka just-in-time provisioning). And it also creates undesirable artifacts if not configured correctly such as:</p>
 <ul>
-<li>Spot VMs and Best Effort Pods</li>
-<li>Combining Spot and On-Demand Fleets</li>
-<li>Applying Saving Plans to your Kubernetes clusters</li>
+<li>Wasted resources (when we allocate more than we actually need)</li>
+<li>Reliability issues (when provisioning doesn't work as expected)</li>
+<li>Unexpected costs (when we don't have good control over what and when gets provisioned)</li>
 </ul>
+<h2 id="resource-allocation-in-kubernetes">Resource Allocation in Kubernetes</h2>
+<p>Kubernetes has different ways of allocating, limiting and provisioning resources for application containers.</p>
+<h3 id="cpu-and-memory-allocation">CPU and memory allocation</h3>
+<p>On the very basic level - engineers can request CPU and memory for a container by defining its resource requests and limits in the Pod resource spec:</p>
+<pre class="w3-code w3-responsive"><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: example
+spec:
+  containers:
+  - image: perfectscale.io/example
+    name: example
+    resources: 
+      requests:
+        cpu: 1
+        memory: 500Mi
+      limits:
+        cpu: 1
+        memory: 500Mi
+</code></pre>
+<h3 id="storage-resource-allocation">Storage Resource Allocation</h3>
+<p>In order to allocate storage Kubernetes allows us to use its PersistentVolume allocation mechanisms in conjunction with one of the multiple supported storage providers (e.g OpenEBS, Portworx, etc.)</p>
+<h3 id="network-resource-allocation">Network Resource Allocation</h3>
+<p>Network resources aren't managed by Kubernetes itself but instead are delegated to one of the multiple CNI networking providers, which are reponsible for provisioning, allocating and retiring network interfaces and addresses. </p>
+<p>Continue <a href="../over-under-idle-waste">here</a> to get a better understanding of the <a href="../over-under-idle-waste">4 main focus areas of Kubernetes Cost Optimization</a>.</p>
 <div id="mkdocs_search_modal" class="w3-modal">
   <div class="w3-modal-content">
     <div class="w3-theme-l4">

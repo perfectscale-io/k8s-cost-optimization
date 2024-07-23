@@ -111,6 +111,9 @@
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../golden-signals/">
       The Golden Signals of Kubernetes Cost Optimization
     </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../resources/">
+      The Economics of Kubernetes Resource Allocation
+    </a>
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../over-under-idle-waste/">
       The 4 Focus Areas of Kubernetes Cost Optimization
     </a>
@@ -134,18 +137,35 @@
 </nav>
 
 <div class="w3-overlay w3-hide-huge w3-animate-opacity" onclick="w3_close()" style="cursor:pointer;" id="myOverlay"></div>
+    
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-right w3-theme-l4" style="z-index:3;width:300px;right:0;" id="myTocbar">
+  <div id="myToc">
+  <a href="#balancing-cost-with-performance-and-reliability" class="w3-bar-item w3-button w3-hover-theme w3-theme-l4">Balancing Cost with Performance and Reliability</a>
+    <a href="#understanding-the-pod-qos-model" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Understanding the Pod QoS Model</a>
+  </div>
+  <div class="w3-container w3-large" style="height: 8em;" >&nbsp;</div>
+</nav>
 
-<div id="main-view" class="w3-main-custom" style="margin-left:300px;">
+<div id="main-view" class="w3-main-custom" style="margin-left:300px; margin-right:300px;">
 
 <div class="w3-container" style="padding: 32px;">
   <div class="w3-right w3-margin-bottom no-print">
+    <div class="w3-dropdown-hover w3-hide-large" id="myTocButton" style="z-index:1;">
+      <button class="w3-button w3-hover-theme w3-theme-l3 w3-hover-theme"><svg class="svg-1em"><use xlink:href="#toc" /></svg></button>
+      <div class="w3-dropdown-content w3-bar-block" style="right:0;">
+        <a href="#balancing-cost-with-performance-and-reliability" class="w3-bar-item w3-button w3-hover-theme w3-theme-l3">Balancing Cost with Performance and Reliability</a>
+        <a href="#understanding-the-pod-qos-model" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Understanding the Pod QoS Model</a>
+      </div>
+    </div>
   </div>
 <h1 id="balancing-cost-with-performance-and-reliability">Balancing Cost with Performance and Reliability</h1>
 <p>Kubernetes cost optimization comes down to pinpointing the correct resource allocations and auto-scaling factors for our workloads.</p>
 <p>But "correct" in this context doesn't mean "the least possible amount of resources". It's a delicate interplay of cost vs. performance vs.reliability. </p>
 <p>In order to run our clusters in the most cost-effective way without compromising either performance or reliability it's vitally inportant to understand the Pod QoS model and the implications of PodDisruptionBudget.</p>
+<h2 id="understanding-the-pod-qos-model">Understanding the Pod QoS Model</h2>
+<p>Kubernetes cost optimization starts with correct resource allocation for application containers that Kubernetes orchestrates.</p>
+<p>Each container can have requests and limits defined for either memory or cpu or both. </p>
 <ul>
-<li>Understanding the Pod QoS Model https://services.google.com/fh/files/misc/state_of_kubernetes_cost_optimization.pdf</li>
 <li>PodDisruptionBudget and application disruption</li>
 </ul>
 <div id="mkdocs_search_modal" class="w3-modal">
