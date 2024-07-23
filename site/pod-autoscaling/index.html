@@ -7,7 +7,7 @@
   
   
   <link rel="shortcut icon" href="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png">
-  <title>Pod Autoscaling - Kubernetes Cost Optimization</title>
+  <title>Overview - Kubernetes Cost Optimization</title>
   <link rel="stylesheet" href="../css/w3.css">
   <link rel="stylesheet" href="../css/w3-theme.css" id="theme-auto">
   <link rel="stylesheet" href="../css/w3-theme-light.css" media="none" id="theme-light">
@@ -123,9 +123,23 @@
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../rightsizing/">
       Kubernetes Workload Rightsizing
     </a>
-    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./">
-      Pod Autoscaling
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" onclick="myAccordion('acc1')" href="javascript:void(0)">
+      Pod Autoscaling<svg class="svg-1em"><use xlink:href="#drop-down" /></svg>
     </a>
+    <div id="acc1" class="w3-animate-left">
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./" style="padding-left: 24px;">
+        Overview
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../hpa/" style="padding-left: 24px;">
+        Horizontal Pod Autoscaling (HPA)
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../keda.md" style="padding-left: 24px;">
+        Event Driven Autoscaling (KEDA)
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../vpa.md" style="padding-left: 24px;">
+        Vertical Pod Autoscaling (VPA)
+      </a>
+    </div>
     <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cluster-autoscaling/">
       Cluster Autoscaling
     </a>
@@ -137,29 +151,59 @@
 </nav>
 
 <div class="w3-overlay w3-hide-huge w3-animate-opacity" onclick="w3_close()" style="cursor:pointer;" id="myOverlay"></div>
+    
+    
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-right w3-theme-l4" style="z-index:3;width:300px;right:0;" id="myTocbar">
+  <div id="myToc">
+  <a href="#pod-autoscaling" class="w3-bar-item w3-button w3-hover-theme w3-theme-l4">Pod Autoscaling</a>
+    <a href="#horizontal-pod-autoscaling" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Horizontal Pod Autoscaling</a>
+    <a href="#vertical-pod-autoscaling" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Vertical Pod Autoscaling</a>
+  </div>
+  <div class="w3-container w3-large" style="height: 8em;" >&nbsp;</div>
+</nav>
 
-<div id="main-view" class="w3-main-custom" style="margin-left:300px;">
+<div id="main-view" class="w3-main-custom" style="margin-left:300px; margin-right:300px;">
 
 <div class="w3-container" style="padding: 32px;">
   <div class="w3-right w3-margin-bottom no-print">
+    <div class="w3-dropdown-hover w3-hide-large" id="myTocButton" style="z-index:1;">
+      <button class="w3-button w3-hover-theme w3-theme-l3 w3-hover-theme"><svg class="svg-1em"><use xlink:href="#toc" /></svg></button>
+      <div class="w3-dropdown-content w3-bar-block" style="right:0;">
+        <a href="#pod-autoscaling" class="w3-bar-item w3-button w3-hover-theme w3-theme-l3">Pod Autoscaling</a>
+        <a href="#horizontal-pod-autoscaling" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Horizontal Pod Autoscaling</a>
+        <a href="#vertical-pod-autoscaling" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Vertical Pod Autoscaling</a>
+      </div>
+    </div>
   </div>
 <h1 id="pod-autoscaling">Pod Autoscaling</h1>
+<p>Autoscaling is a widely accepted practice in cloud computing which entails automatically adjusting the amount of computational resources based on load.</p>
+<p>Autoscaling automates resource management and as such has a significant impact on cluster costs. </p>
+<p>Well configured autoscaling can make your cluster lean, efficient and reliable. </p>
+<p>Badly configured autoscaling can generate waste and reduce availability.</p>
+<p>Kubernetes comes with add-ons that allow us to autoscale <strong>pods</strong> in 2 distinct ways:</p>
+<ol>
+<li>
+<p>Horizontally</p>
+<p>By changing the number of pod replicas in a workload (Deployment, StatefulSet) </p>
+</li>
+<li>
+<p>Vertically</p>
+<p>By changing the amount of resources (CPU, memory) allocated to each individual pod in a workload.</p>
+</li>
+</ol>
+<h2 id="horizontal-pod-autoscaling">Horizontal Pod Autoscaling</h2>
+<p>Horizontal pod autoscaling is enabled by the following add-ons:</p>
+<p><em>(Follow the links for autoscaling optimization recommendations)</em></p>
 <ul>
-<li>Horizontal<ul>
-<li>HPA<ul>
-<li>CPU</li>
-<li>Memory</li>
-<li>Custom metrics</li>
+<li><a href="../hpa">HPA</a></li>
+<li><a href="../keda">KEDA</a></li>
 </ul>
-</li>
-<li>KEDA</li>
-</ul>
-</li>
-<li>Vertical<ul>
+<h2 id="vertical-pod-autoscaling">Vertical Pod Autoscaling</h2>
+<p>Horizontal pod autosscaling is enabled by the following add-ons:</p>
+<p><em>(Follow the links for autoscaling optimization recommendations)</em></p>
+<ul>
 <li>VPA</li>
 <li>Goldilocks</li>
-</ul>
-</li>
 </ul>
 <div id="mkdocs_search_modal" class="w3-modal">
   <div class="w3-modal-content">

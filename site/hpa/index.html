@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png">
+  <title>Horizontal Pod Autoscaling (HPA) - Kubernetes Cost Optimization</title>
+  <link rel="stylesheet" href="../css/w3.css">
+  <link rel="stylesheet" href="../css/w3-theme.css" id="theme-auto">
+  <link rel="stylesheet" href="../css/w3-theme-light.css" media="none" id="theme-light">
+  <link rel="stylesheet" href="../css/w3-theme-dark.css" media="none" id="theme-dark">
+  <link rel="stylesheet" href="../css/theme.css">
+  <script>
+  var base_url = "..";
+  var themeItem = 'risonia_theme_'+encodeURIComponent('None');
+
+  function checkTheme() {
+    let theme = localStorage.getItem(themeItem);
+    if (theme) {
+      if (theme == 'light') {
+        document.getElementById('theme-dark').media = 'none';
+        document.getElementById('theme-light').media = '';
+      }
+      if (theme == 'dark') {
+        document.getElementById('theme-light').media = 'none';
+        document.getElementById('theme-dark').media = '';
+      }
+    }
+  }
+  checkTheme()
+  </script> 
+</head>
+
+<body class="w3-theme-l5">
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="open-menu" viewBox="0 0 10 10" fill="currentColor">
+    <rect y="0" width="10" height="2"/>
+    <rect y="4" width="10" height="2"/>
+    <rect y="8" width="10" height="2"/>
+  </symbol>
+  <symbol id="drop-down" viewBox="0 0 10 10" fill="currentColor">
+    <path d="m2 1h6l-3 8z"/>
+  </symbol>
+  <symbol id="to-top" viewBox="0 0 10 10" fill="currentColor">
+    <path d="m2 9h6l-3-8z" />
+  </symbol>
+  <symbol id="theme-toggle" viewBox="0 0 10 10">
+    <ellipse cx="5" cy="5" rx="4.35" ry="4.35" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M 5,0.5 A 4.5,4.5 0 0 1 9.5,5 4.5,4.5 0 0 1 5,9.5 V 5 Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="close-menu" viewBox="0 0 10 10" fill="none" stroke="currentColor">
+    <path d="m0.71 0.71 8.58 8.58" stroke-width="2"/>
+    <path d="m9.29 0.71-8.58 8.58" stroke-width="2"/>
+  </symbol>
+  <symbol id="toc" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="m2.75 1.25h6.75"/>
+    <path d="m0.5 1.25h1.5"/>
+    <path d="m5 6.13h4.5"/>
+    <path d="m2.75 6.13h1.5"/>
+    <path d="m2.75 3.87h6.75"/>
+    <path d="m0.5 3.87h1.5"/>
+    <path d="m2.75 8.75h6.75"/>
+    <path d="m0.5 8.75h1.5"/>
+  </symbol>
+  <symbol id="search" viewBox="0 0 10 10" fill="none" stroke="currentColor">
+    <ellipse cx="3.25" cy="3.25" rx="2.75" ry="2.75" fill="none"/>
+    <path d="m5 5 4.65 4.65" fill="none"/>
+  </symbol>
+</svg>
+
+<div id="myTop" class="w3-container w3-cell-row w3-top w3-theme w3-medium no-print" style="z-index:2;">
+  <div class="w3-cell w3-cell-middle" style="width:0;">
+    <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small" onclick="w3_open()"><img src="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png" class="svg-2em"></button>
+  </div>
+  <div class="w3-cell w3-cell-middle w3-padding-24" style="width:0;">
+    <span style="height:2em;display:inline-block;padding:16px 0px;">&nbsp;</span>
+  </div>
+  <div class="w3-cell w3-cell-middle">
+    <span class="w3-left" id="title-top">Horizontal Pod Autoscaling (HPA)</span>
+  </div>
+  <div class="w3-cell w3-cell-middle" style="width:0;">
+    <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-left w3-hide no-print" onclick="topFunction()" id="myToTop"><svg class="svg-1em"><use xlink:href="#to-top" /></svg></button>
+  </div>
+  <div class="w3-cell w3-cell-middle">
+    <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-right no-print" onclick="toggleTheme(themeItem)" id="myThemeToggle"><svg class="svg-1em"><use xlink:href="#theme-toggle" /></svg></button>
+    <button class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-right no-print" onclick="openSearch()"><svg class="svg-1em"><use xlink:href="#search" /></svg></button>
+    <a class="w3-button w3-theme-d1 w3-hover-theme w3-padding-small w3-right no-print" href="None" target="_blank">&lt;/&gt;</a>
+    </div>
+</div>
+
+<header class="w3-container w3-theme w3-medium">
+  <div class="w3-cell w3-cell-middle">
+    <button class="w3-button w3-theme w3-hover-theme w3-padding-small" style="background-color: transparent!important;"><img src="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png" class="svg-2em"></button>
+  </div>
+  <div class="w3-cell w3-cell-middle w3-padding-24" style="width:0;">
+    <span style="height:2em;display:inline-block;padding:16px 0px;">&nbsp;</span>
+  </div>
+  <div class="w3-cell w3-cell-middle">
+    <span class="w3-left" id="title-head">Horizontal Pod Autoscaling (HPA)</span>
+  </div>
+</header>
+<nav class="w3-sidebar w3-bar-block w3-collapse-custom w3-animate-left w3-theme-l4" style="z-index:3;width:300px;" id="mySidebar">
+  <div id="myNav" style="font-weight: bold;">
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="..">
+      Home
+    </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../golden-signals/">
+      The Golden Signals of Kubernetes Cost Optimization
+    </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../resources/">
+      The Economics of Kubernetes Resource Allocation
+    </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../over-under-idle-waste/">
+      The 4 Focus Areas of Kubernetes Cost Optimization
+    </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cost-perf-r9y/">
+      Balancing Cost with Performance and Reliability
+    </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../rightsizing/">
+      Kubernetes Workload Rightsizing
+    </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" onclick="myAccordion('acc1')" href="javascript:void(0)">
+      Pod Autoscaling<svg class="svg-1em"><use xlink:href="#drop-down" /></svg>
+    </a>
+    <div id="acc1" class="w3-animate-left">
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../pod-autoscaling/" style="padding-left: 24px;">
+        Overview
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l2" href="./" style="padding-left: 24px;">
+        Horizontal Pod Autoscaling (HPA)
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../keda.md" style="padding-left: 24px;">
+        Event Driven Autoscaling (KEDA)
+      </a>
+      <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../vpa.md" style="padding-left: 24px;">
+        Vertical Pod Autoscaling (VPA)
+      </a>
+    </div>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cluster-autoscaling/">
+      Cluster Autoscaling
+    </a>
+    <a class="w3-bar-item w3-padding-16 w3-button w3-hover-theme w3-theme-l4" href="../cloud-discounts/">
+      Leveraging Cloud Discounts
+    </a>
+  </div>
+  <div class="w3-container w3-large" style="height: 8em;" >&nbsp;</div>
+</nav>
+
+<div class="w3-overlay w3-hide-huge w3-animate-opacity" onclick="w3_close()" style="cursor:pointer;" id="myOverlay"></div>
+    
+    
+    
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-right w3-theme-l4" style="z-index:3;width:300px;right:0;" id="myTocbar">
+  <div id="myToc">
+  <a href="#hpa-the-horizontal-pod-autoscaler" class="w3-bar-item w3-button w3-hover-theme w3-theme-l4">HPA - The Horizontal Pod Autoscaler</a>
+    <a href="#how-hpa-works" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">How HPA works</a>
+    <a href="#kubernetes-hpa-shortcomings-cost-and-performance" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Kubernetes HPA Shortcomings - Cost and Performance</a>
+    <a href="#optimizing-hpa-for-cost-and-performance" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l4">Optimizing HPA for Cost and Performance:</a>
+  </div>
+  <div class="w3-container w3-large" style="height: 8em;" >&nbsp;</div>
+</nav>
+
+<div id="main-view" class="w3-main-custom" style="margin-left:300px; margin-right:300px;">
+
+<div class="w3-container" style="padding: 32px;">
+  <div class="w3-right w3-margin-bottom no-print">
+    <div class="w3-dropdown-hover w3-hide-large" id="myTocButton" style="z-index:1;">
+      <button class="w3-button w3-hover-theme w3-theme-l3 w3-hover-theme"><svg class="svg-1em"><use xlink:href="#toc" /></svg></button>
+      <div class="w3-dropdown-content w3-bar-block" style="right:0;">
+        <a href="#hpa-the-horizontal-pod-autoscaler" class="w3-bar-item w3-button w3-hover-theme w3-theme-l3">HPA - The Horizontal Pod Autoscaler</a>
+        <a href="#how-hpa-works" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">How HPA works</a>
+        <a href="#kubernetes-hpa-shortcomings-cost-and-performance" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Kubernetes HPA Shortcomings - Cost and Performance</a>
+        <a href="#optimizing-hpa-for-cost-and-performance" class="w3-bar-item w3-small w3-button w3-hover-theme w3-theme-l3">Optimizing HPA for Cost and Performance:</a>
+      </div>
+    </div>
+  </div>
+<h1 id="hpa-the-horizontal-pod-autoscaler">HPA - The Horizontal Pod Autoscaler</h1>
+<p>Horizontal Pod Autoscaler (HPA) in Kubernetes is a controller that automatically adjusts the number of pods based on observed CPU or memory utilization (default mode) or other metrics. The goal of HPA is to ensure that applications can handle varying loads efficiently by scaling out (increasing the number of pods) during high demand and scaling in (decreasing the number of pods) during low demand. This dynamic scaling helps maintain resource utilization and application performance. HPA continuously monitors the specified metrics and adjusts the replica count to match the desired state, ensuring that the application remains responsive. </p>
+<p><img alt="hpa" class="w3-image" src="../assets/hpa.png"/></p>
+<h2 id="how-hpa-works">How HPA works</h2>
+<p>HPA works as a control loop that runs at regular intervals. During each interval, the HPA controller queries the resource utilization metrics specified in the HPA configuration. The controller identifies the target resource defined by the <code class="w3-codespan">scaleTargetRef</code> field in the HPA configuration. It then selects the pods based on the target resource's selector labels and fetches the relevant metrics. For CPU and memory metrics, the controller uses the resource metrics API. For custom metrics, it uses the custom metrics API. If you want to create your own custom metrics adapter, take a look at the starter [template] (https://github.com/kubernetes-sigs/custom-metrics-apiserver)</p>
+<p><img alt="hpa-works" class="w3-image" src="../assets/hpa-works.png"/></p>
+<p>For metrics of individual pod resources, such as CPU usage, the HPA controller collects data for each pod that it targets. When a target utilization value is specified, the controller calculates the CPU utilization as a percentage of the resource request defined for each container within the pod. If any containers within a pod lack the necessary resource request settings, the CPU utilization for that pod will not be defined, and the autoscaler will not take any action based on the metric.</p>
+<p>HPA generally retrieves metrics from aggregated APIs like <code class="w3-codespan">metrics.k8s.io</code>, <code class="w3-codespan">custom.metrics.k8s.io</code>, or <code class="w3-codespan">external.metrics.k8s.io</code>. The <code class="w3-codespan">metrics.k8s.io</code> API is generally provided by an add-on called Metrics Server, which must be deployed separately.</p>
+<p>The Horizontal Pod Autoscaler (HPA) uses a straightforward algorithm to adjust the number of pod replicas based on the ratio of current metric values  to desired metric values. The core formula is:</p>
+<pre class="w3-code w3-responsive"><code>desiredReplicas = ceil[currentReplicas * ( currentMetricValue / desiredMetricValue )]
+</code></pre>
+<p>For example, if the current CPU usage is 300m and the target is 150m, the number of replicas will double because  <code class="w3-codespan">300.0 / 150.0 = 2.0</code>. Conversely, if the current usage is 75m, the replicas will be halved because <code class="w3-codespan">75.0 / 150.0 = 0.5</code>.</p>
+<h2 id="kubernetes-hpa-shortcomings-cost-and-performance">Kubernetes HPA Shortcomings - Cost and Performance</h2>
+<ol>
+<li><strong>Metric Constraints and Conflicts</strong>:  HPA cannot be used with VPA when both are based on CPU or memory metrics. This is because VPA adjusts resource requests and limits, which can conflict with HPA's scaling decisions. This limitation can lead to suboptimal resource allocation, impacting both cost efficiency and performance.</li>
+<li><strong>Limited Resource Consideration</strong>: HPA doesn't consider IOPS, network bandwidth, or storage usage in its scaling decisions. This oversight can lead to performance bottlenecks or outages if these resources become constrained, potentially resulting in poor user experience and increased operational costs to address these issues reactively.</li>
+<li><strong>Granularity and Resource Waste</strong>: HPA scales at the pod level, which may not provide the fine-grained control needed for certain applications. This can result in over-scaling or under-scaling, impacting both application performance and resource utilization. Moreover, HPA doesn't address resource waste within the Kubernetes cluster, leaving administrators responsible for identifying and managing unused or over-provisioned resources at the container level. This can lead to inefficiencies and increased costs if not carefully monitored.</li>
+<li><strong>Scaling Latency and Stability</strong>: HPA operates on a polling interval (default 15 seconds), introducing a delay between detecting a need for scaling and implementing the change. This latency can be problematic during sudden traffic spikes, potentially leading to temporary performance degradation. To compensate, administrators might set more aggressive scaling parameters, potentially increasing resource costs. Moreover, without proper cooldown periods, HPA can cause rapid scaling up and down, leading to instability or "flapping". Careful configuration of stabilization windows is necessary to ensure stable scaling behavior, adding to management complexity.</li>
+<li><strong>Resource Utilization Fluctuations</strong>: HPA makes scaling decisions based on current resource utilization metrics, which can be challenging for workloads with high variability. This can lead to "thrashing," where the system rapidly scales up and down in response to short-term fluctuations. Thrashing impacts both performance stability and cost efficiency, as each scaling operation consumes resources and can incur additional costs, especially in cloud environments.</li>
+<li><strong>Sampling rate limitations</strong>: Kubernetes' default configuration can hinder HPA's effectiveness for applications with rapidly changing workloads. The default metric collection interval of 15 seconds may not provide sufficiently granular data for making timely scaling decisions in highly dynamic environments. This limitation can result in delayed responses to changing conditions, potentially leading to performance issues during traffic spikes and inefficient resource utilization during lulls. This coarse sampling might lead to over-provisioning as a safety measure, increasing overall resource costs.</li>
+<li><strong>Lack of Predictive Scaling</strong>: HPA's reactive approach, which responds to current conditions rather than anticipates future needs, can be suboptimal for applications with predictable traffic patterns or scheduled events. This can lead to temporary performance degradation during regular traffic spikes and impact cost efficiency, as resources are not preemptively allocated for known high-traffic periods.</li>
+<li><strong>Cold Start Inefficiency</strong>: When new pods are created in response to increased demand, they require time to become fully operational. This includes time for container image pulling, application startup, and potentially warming up caches or establishing connections. During this period, the newly created pods consume resources but may not yet be able to handle their full share of the workload. This can lead to temporary resource inefficiency and potential performance impact during the scaling process. During a cold start, you're essentially paying for resources that are not yet fully utilized, which can impact overall cost efficiency, especially in environments with frequent scaling events.</li>
+</ol>
+<h2 id="optimizing-hpa-for-cost-and-performance">Optimizing HPA for Cost and Performance:</h2>
+<ol>
+<li>
+<p><strong>Right-size your pods</strong>: Right-sizing your pods is a critical step in optimizing HPA for both cost and performance. By carefully configuring your pods with appropriate resource requests and limits, you create a more accurate baseline for HPA to make scaling decisions. This precision prevents unnecessary scaling events, which can lead to wasted resources and increased costs. </p>
+</li>
+<li>
+<p><strong>Implement pod disruption budgets</strong>: Implementing Pod Disruption Budgets (PDBs) is an essential strategy for maintaining application stability during scaling events, which directly impacts both performance and cost efficiency. PDBs ensure that a minimum number of pods remain available during voluntary disruptions, such as node drains or cluster upgrades. This guarantee of minimum availability prevents performance degradation during scaling operations, ensuring that your application continues to serve requests effectively. PDBs help avoid scenarios where excessive pod terminations might trigger unnecessary scale-up events, thus preventing wasteful resource allocation and associated costs.</p>
+<p>An example of a PDB:</p>
+</li>
+</ol>
+<pre class="w3-code w3-responsive"><code class="language-yaml">        apiVersion: policy/v1beta1
+        kind: PodDisruptionBudget
+        metadata:
+        name: my-app-pdb
+        spec: 
+        minAvailable: 2 
+        selector: 
+            matchLabels:
+                app: my-app
+</code></pre>
+<ol start="3">
+<li>
+<p><strong>Utilize custom metrics</strong>: Instead of relying solely on generic CPU and memory metrics, custom metrics allow you to scale based on application-specific indicators that truly reflect your workload's needs. This approach leads to more precise and effective scaling decisions, ensuring that you're allocating resources where they're most needed. By scaling based on metrics that directly correlate with your application's performance, you can maintain optimal user experience while avoiding overprovisioning helps in optimizing both performance and cost.</p>
+</li>
+<li>
+<p><strong>Adjust HPA parameters</strong>: Adjusting HPA parameters, particularly scaleUpStabilizationWindowSeconds and scaleDownStabilizationWindowSeconds, is crucial for fine-tuning your autoscaling behavior. These parameters help reduce thrashing – rapid scaling up and down – which can negatively impact both performance and cost. By setting appropriate stabilization windows, you give your system time to stabilize after a scaling event before making new scaling decisions. This approach prevents unnecessary scaling operations, reducing the associated performance overhead and resource costs.</p>
+</li>
+</ol>
+<pre class="w3-code w3-responsive"><code class="language-yaml">        behavior:
+        scaleDown:
+            stabilizationWindowSeconds: 300
+            policies:
+            - type: Percent
+            value: 100
+            periodSeconds: 15
+</code></pre>
+<ol start="5">
+<li>
+<p><strong>Implement cluster autoscaling</strong>: Implementing cluster autoscaling in conjunction with HPA provides a more holistic approach to resource management, optimizing both performance and cost at the cluster level. While HPA ensures that your application has the right number of pods, cluster autoscaling ensures that your Kubernetes cluster has enough nodes to accommodate these pods. This synergy prevents scenarios where HPA decisions are constrained by cluster capacity, ensuring that your application can scale as needed for optimal performance. Cluster autoscaling allows you to efficiently utilize cloud resources, scaling your infrastructure up or down based on actual demand, thus avoiding the costs associated with over-provisioned clusters.</p>
+</li>
+<li>
+<p><strong>Consider alternative solutions</strong>: Considering alternative solutions like the Kubernetes Event-Driven Autoscaler (KEDA) or custom autoscaling solutions can provide more granular control and predictive scaling capabilities for applications with complex requirements. These advanced solutions can optimize performance by reacting more quickly to changes in workload or even anticipating them. The ability to scale more precisely and proactively can lead to significant savings by ensuring that resources are allocated only when truly needed and in the right quantities.</p>
+</li>
+</ol>
+<div id="mkdocs_search_modal" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-theme-l4">
+      <span onclick="closeSearch();" class="w3-theme-l2 w3-button w3-hover-theme w3-display-topright"><svg class="svg-1em"><use xlink:href="#close-menu" /></svg></span>
+      <span class="w3-display-topleft" style="padding: 8px 16px;"><svg class="svg-2em"><use xlink:href="#search" /></svg></span>
+      <form id="content_search">
+        <div class="w3-container">&nbsp;</div>
+        <div class="w3-container">&nbsp;</div>
+        <div class="w3-container">
+          <input type="search" class="w3-input w3-border w3-round w3-theme-l5 w3-hover-theme" placeholder="" id="mkdocs-search-query">
+        </div>
+      </form>
+      <div class="w3-container search-results" id="mkdocs-search-results" data-no-results-text="-">&nbsp;</div>
+    </div>
+  </div>
+</div>
+</div>
+  <p class="w3-right w3-tiny">
+    <a href="https://perfectscale.io">Brought to you by PerfectScale </a> <img src="https://assets-global.website-files.com/634ebd5aab79d1fa815c5394/637b3799370cfa67b276a970_PerfectScale%20-%20Favicon.png">
+  </p>
+</div>
+<script src="../js/theme.js"></script>  
+    <script src="../search/main.js"></script>
+<script>
+  var DOMContentLoaded_fired = false;
+</script>
+<script id="theme">
+function runWhenDOMContentLoaded() {
+  document.querySelectorAll('pre code').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+  document.querySelectorAll('table').forEach(function(table) {
+    if (!table.hasAttribute('Tablesort')) {
+      new Tablesort(table);
+      table.setAttribute('Tablesort', '');
+    }
+  });
+}
+if (DOMContentLoaded_fired) {
+  runWhenDOMContentLoaded();
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  DOMContentLoaded_fired=true;
+  runWhenDOMContentLoaded();
+});
+</script>
+
+</body>
+</html>
