@@ -43,6 +43,7 @@
 <meta og:description="Kubernetes Cost Optimization">
 <meta og:image="https://cdn.prod.website-files.com/634ebd5aab79d1fa815c5394/6584663c41aea632d9c1498e_Kubernetes%20Cost%20Optimization%20-%20Cut%20cost%20by%20up%20to%2050%25-p-800.webp">
 
+
 </head>
 
 <body class="w3-theme-l5">
@@ -183,8 +184,16 @@
       </div>
     </div>
   </div>
-
-
+<h1 id="balancing-cost-with-performance-and-reliability">Balancing Cost with Performance and Reliability</h1>
+<p>Kubernetes cost optimization comes down to pinpointing the correct resource allocations and auto-scaling factors for our workloads.</p>
+<p>But "correct" in this context doesn't mean "the least possible amount of resources". It's a delicate interplay of cost vs. performance vs.reliability. </p>
+<p>In order to run our clusters in the most cost-effective way without compromising either performance or reliability it's vitally inportant to understand the Pod QoS model and the implications of PodDisruptionBudget.</p>
+<h2 id="understanding-the-pod-qos-model">Understanding the Pod QoS Model</h2>
+<p>Kubernetes cost optimization starts with correct resource allocation for application containers that Kubernetes orchestrates.</p>
+<p>Each container can have requests and limits defined for either memory or cpu or both. </p>
+<ul>
+<li>PodDisruptionBudget and application disruption</li>
+</ul>
 <div id="mkdocs_search_modal" class="w3-modal">
   <div class="w3-modal-content">
     <div class="w3-theme-l4">

@@ -43,6 +43,7 @@
 <meta og:description="Kubernetes Cost Optimization">
 <meta og:image="https://cdn.prod.website-files.com/634ebd5aab79d1fa815c5394/6584663c41aea632d9c1498e_Kubernetes%20Cost%20Optimization%20-%20Cut%20cost%20by%20up%20to%2050%25-p-800.webp">
 
+
 </head>
 
 <body class="w3-theme-l5">
@@ -186,8 +187,36 @@
       </div>
     </div>
   </div>
-
-
+<h1 id="pod-autoscaling">Pod Autoscaling</h1>
+<p>Autoscaling is a widely accepted practice in cloud computing which entails automatically adjusting the amount of computational resources based on load.</p>
+<p>Autoscaling automates resource management and as such has a significant impact on cluster costs. </p>
+<p>Well configured autoscaling can make your cluster lean, efficient and reliable. </p>
+<p>Badly configured autoscaling can generate waste and reduce availability.</p>
+<p>Kubernetes comes with add-ons that allow us to autoscale <strong>pods</strong> in 2 distinct ways:</p>
+<ol>
+<li>
+<p>Horizontally</p>
+<p>By changing the number of pod replicas in a workload (Deployment, StatefulSet) </p>
+</li>
+<li>
+<p>Vertically</p>
+<p>By changing the amount of resources (CPU, memory) allocated to each individual pod in a workload.</p>
+</li>
+</ol>
+<h2 id="horizontal-pod-autoscaling">Horizontal Pod Autoscaling</h2>
+<p>Horizontal pod autoscaling is enabled by the following add-ons:</p>
+<p><em>(Follow the links for autoscaling optimization recommendations)</em></p>
+<ul>
+<li><a href="../hpa">HPA</a></li>
+<li><a href="../keda">KEDA</a></li>
+</ul>
+<h2 id="vertical-pod-autoscaling">Vertical Pod Autoscaling</h2>
+<p>Horizontal pod autosscaling is enabled by the following add-ons:</p>
+<p><em>(Follow the links for autoscaling optimization recommendations)</em></p>
+<ul>
+<li>VPA</li>
+<li>Goldilocks</li>
+</ul>
 <div id="mkdocs_search_modal" class="w3-modal">
   <div class="w3-modal-content">
     <div class="w3-theme-l4">

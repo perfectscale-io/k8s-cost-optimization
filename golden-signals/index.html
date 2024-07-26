@@ -43,6 +43,7 @@
 <meta og:description="Kubernetes Cost Optimization">
 <meta og:image="https://cdn.prod.website-files.com/634ebd5aab79d1fa815c5394/6584663c41aea632d9c1498e_Kubernetes%20Cost%20Optimization%20-%20Cut%20cost%20by%20up%20to%2050%25-p-800.webp">
 
+
 </head>
 
 <body class="w3-theme-l5">
@@ -186,8 +187,77 @@
       </div>
     </div>
   </div>
-
-
+<h1 id="the-golden-signals">The Golden Signals</h1>
+<p>The 4 "golden signals" of Kubernetes Cost Optimization as defined in a <a href="https://services.google.com/fh/files/misc/state_of_kubernetes_cost_optimization.pdf" target="_blank">whitepaper</a> released by Google Cloud in June 2023.</p>
+<div class="w3-responsive"><table class="w3-table w3-bordered w3-striped">
+<thead>
+<tr>
+<th>Signal</th>
+<th>Group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.Workload Rightsizing</td>
+<td>Resources</td>
+</tr>
+<tr>
+<td>2.Demand-based Downscaling</td>
+<td></td>
+</tr>
+<tr>
+<td>3.Cluster Bin Packing</td>
+<td></td>
+</tr>
+<tr>
+<td>4.Cloud Provider Discount Coverage</td>
+<td>Cloud Discounts</td>
+</tr>
+</tbody>
+</table></div>
+<p>These signals help us apply and measure cost optimization for Kubernets clusters. </p>
+<p>The 3 signals in the <em>resources</em> group apply to all clusters  - be it on-prem or on-cloud. </p>
+<p>The <em>cloud discounts</em> naturally only apply to cloud-based managed clusters, where it is very important to pinpoint the instance types and reservation level of our cluster nodes.</p>
+<p>Let's explain each signal in a bit more detail.</p>
+<h4 id="the-resources-group">The Resources Group</h4>
+<div class="w3-responsive"><table class="w3-table w3-bordered w3-striped">
+<thead>
+<tr>
+<th>Signal</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workload Rightsizing</td>
+<td>Refers to our ability to<br/> allocate the amount of resources <br/> that the workloads actually need and adapt<br/>  resource requests and limits<br/>  as application requirements change.</td>
+</tr>
+<tr>
+<td>Demand based autoscaling</td>
+<td>Measures the capacity of developers <br/>and platform admins to make clusters <br/> scale down during off-peak hours.</td>
+</tr>
+<tr>
+<td>Cluster bin packing</td>
+<td>Refers to our ability to<br/> measure and utilize the CPU <br/>and memory of each node <br/>in the most effective and reliable way<br/>through correct Pod placement.</td>
+</tr>
+</tbody>
+</table></div>
+<p><br/></p>
+<h4 id="the-cloud-discounts-group">The Cloud Discounts group</h4>
+<div class="w3-responsive"><table class="w3-table w3-bordered w3-striped">
+<thead>
+<tr>
+<th>Signal</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Discount Coverage</td>
+<td>Refers to leveraging cloud  VM instances that offer <br/> discounts, such as Spot VMs, <br/>as well as the ability of budget<br/> owners and FinOps professionals to take <br/>advantage of long-term continuous use discounts<br/> offered by cloud providers.</td>
+</tr>
+</tbody>
+</table></div>
 <div id="mkdocs_search_modal" class="w3-modal">
   <div class="w3-modal-content">
     <div class="w3-theme-l4">
